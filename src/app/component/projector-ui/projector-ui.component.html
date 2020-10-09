@@ -1,0 +1,20 @@
+<body>
+<form class="form-signin" [formGroup]="formGroup" (ngSubmit)="submit()">
+
+  <h1 class="h3 mb-3 font-weight-normal">Projector tool</h1>
+
+  <label  class="sr-only">English sentence</label>
+  <input matInput  formControlName="english"  id="english" class="form-control"  >
+  <label  class="sr-only">Sinhala sentence</label>
+  <input  matInput  formControlName="sinhala"  id="sinhala" class="form-control" >
+  <div class="checkbox mb-3">
+
+  </div>
+
+
+
+  <button class="btn btn-lg btn-secondary btn-block" type="submit">submit</button>
+
+</form>
+  {{output}}
+</body>
