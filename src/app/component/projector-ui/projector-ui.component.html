@@ -3,18 +3,33 @@
 
   <h1 class="h3 mb-3 font-weight-normal">Projector tool</h1>
 
-  <label  class="sr-only">English sentence</label>
+  <label >English sentence    </label>
   <input matInput  formControlName="english"  id="english" class="form-control"  >
-  <label  class="sr-only">Sinhala sentence</label>
+  <br>
+  <br>
+  <label >Sinhala sentence    </label>
   <input  matInput  formControlName="sinhala"  id="sinhala" class="form-control" >
-  <div class="checkbox mb-3">
-
-  </div>
-
-
+  <br>
+  <br>
 
   <button class="btn btn-lg btn-secondary btn-block" type="submit">submit</button>
 
 </form>
-  {{output}}
+    <br>
+    <br>
+    <div class="d-flex justify-content-center" *ngIf="loading">
+      <div class="spinner-border" role="status">
+        <span class="sr-only" id="loading"></span>
+      </div>
+    </div>
+    <ul >
+      <li *ngFor="let label of labels">
+        {{label}}
+      </li>
+    </ul>
+    <ul >
+      <li *ngFor="let word of words">
+        {{ word }}
+      </li>
+    </ul>
 </body>
