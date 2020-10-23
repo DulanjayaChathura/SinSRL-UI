@@ -1,13 +1,30 @@
-ul {
-  display: table-row;
+/*.ulcss {*/
+/*  display: table-row;*/
+/*  vertical-align: top*/
 
+/*}*/
+
+/*.licss {*/
+/*  display: table-cell;*/
+/*  text-align: center;*/
+/*  padding: 0px 10px 0px 10px;*/
+/*}*/
+
+table {
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
 }
 
-li {
-  display: table-cell;
-  text-align: center;
-  padding: 0px 20px 0px 10px;
+th, td {
+  text-align: left;
+  padding: 16px;
 }
+
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+
 
 #loading{
   position: absolute;

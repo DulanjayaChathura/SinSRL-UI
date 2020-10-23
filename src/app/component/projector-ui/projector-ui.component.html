@@ -22,14 +22,39 @@
         <span class="sr-only" id="loading"></span>
       </div>
     </div>
-    <ul >
-      <li *ngFor="let label of labels">
-        {{label}}
-      </li>
+
+    <ul>
+      <li *ngFor="let verb of verbList; let num = index">
+        <label >Verb : {{verb}} </label>
+        <br>
+        <br>
+<!--        <div>-->
+<!--          <ul class = "ulcss">-->
+<!--            <li *ngFor="let role of roles" class ="licss">-->
+<!--              {{role[num]}}-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--          <br>-->
+<!--          <ul class = "ulcss">-->
+<!--            <li *ngFor="let key of keyList" class ="licss">-->
+<!--              {{key}}-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--        <br>-->
+<!--        <br>-->
+<!--      </li>-->
+        <table>
+          <tr>
+            <th *ngFor="let role of roles"> {{role[num]}}</th>
+          </tr>
+          <tr>
+            <td *ngFor="let key of keyList">{{key}}</td>
+          </tr>
+        </table>
+      <br>
+      <br>
     </ul>
-    <ul >
-      <li *ngFor="let word of words">
-        {{ word }}
-      </li>
-    </ul>
+
+
 </body>
