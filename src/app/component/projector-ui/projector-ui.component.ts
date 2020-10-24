@@ -39,7 +39,7 @@ export class ProjectorUIComponent implements OnInit {
     });
   }
   extractor(respone) {
-    // console.log(respone)
+     console.log(respone)
     if(respone != null) {
       this.loading = false;
     }
@@ -77,9 +77,9 @@ export class ProjectorUIComponent implements OnInit {
        // this.labels.push(val["frame"].replace("]", "").replace("[B-", "").replace("[I-", "").replace("[O-", "").replace("[", ""));
 
     }
-     console.log(this.roles)
-    console.log(this.keyList)
-    console.log(this.verbList)
+    //  console.log(this.roles)
+    // console.log(this.keyList)
+    // console.log(this.verbList)
   }
 
 }
