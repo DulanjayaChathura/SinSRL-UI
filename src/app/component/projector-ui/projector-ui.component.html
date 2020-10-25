@@ -25,7 +25,7 @@
 
     <ul>
       <li *ngFor="let verb of verbList; let num = index">
-        <label >Verb : {{verb}} </label>
+        <label > Predicate : {{verb}} </label>
         <br>
         <br>
 <!--        <div>-->
@@ -44,14 +44,25 @@
 <!--        <br>-->
 <!--        <br>-->
 <!--      </li>-->
+
         <table>
-          <tr>
-            <th *ngFor="let role of roles">{{role[num]}}</th>
-          </tr>
-          <tr>
-            <td *ngFor="let key of keyList">{{key}}</td>
-          </tr>
+            <tr >
+<!--              <th *ngFor="let role of roles">{{role[num]}}</th>-->
+              <th *ngFor="let item of dictionaryObjects[num] | keyvalue:returnZero">{{item.key}}</th>
+            </tr>
+<!--            <td *ngFor="let key of keyList">{{key}}</td>-->
+              <!--              <th *ngFor="let role of roles">{{role[num]}}</th>-->
+            <tr >
+              <!--            <td *ngFor="let key of keyList">{{key}}</td>-->
+              <td *ngFor="let item of dictionaryObjects[num] | keyvalue : returnZero " >{{item.value}}</td>
+            </tr>
+
         </table>
+        <br>
+        <br>
+<!--      <label *ngFor="let item of dictionaryObjects[num] | keyvalue"  > {{item.key}}</label>-->
+      </li>
+
       <br>
       <br>
     </ul>

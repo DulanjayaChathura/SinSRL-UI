@@ -15,9 +15,15 @@ export class ProjectorUIComponent implements OnInit {
   roleList = [];
   argList = [];
   keyList = [];
-  verbList=[];
+  verbList = [];
   loading= false;
-  roles =[]
+  roles = []
+  roleListIndex=-1
+  keyListIndex=-1
+  dictionaryObjects = []
+  dictionaryObject={}
+  tempdictionaryObject=""
+  tempkeyList=""
 
   formGroup = new FormGroup({
     english: new FormControl(),
@@ -31,6 +37,10 @@ export class ProjectorUIComponent implements OnInit {
     this.roles = [];
     this.keyList=[];
     this.verbList=[];
+    this.dictionaryObjects=[];
+    this.dictionaryObject={};
+    this.roleListIndex=-1;
+    this.keyListIndex=-1;
     this.loading = true;
     this.projectorService.request(this.formGroup.get('english').value, this.formGroup.get('sinhala').value).subscribe(response => {
       this.output =  this.extractor(JSON.parse("[" + response["result"] + "]"));
@@ -39,7 +49,7 @@ export class ProjectorUIComponent implements OnInit {
     });
   }
   extractor(respone) {
-     console.log(respone)
+     // console.log(respone)
     if(respone != null) {
       this.loading = false;
     }
@@ -68,7 +78,7 @@ export class ProjectorUIComponent implements OnInit {
             // console.log(val.substring(2))
             this.roleList.push(val.substring(2))
           }else{
-            this.roleList.push("__")
+            this.roleList.push("____")
           }
 
 
@@ -77,9 +87,36 @@ export class ProjectorUIComponent implements OnInit {
        // this.labels.push(val["frame"].replace("]", "").replace("[B-", "").replace("[I-", "").replace("[O-", "").replace("[", ""));
 
     }
-    //  console.log(this.roles)
+    this.makeDictionaryObjects()
+     // console.log(this.roles)
     // console.log(this.keyList)
     // console.log(this.verbList)
+    // console.log(this.dictionaryObjects)
   }
+  makeDictionaryObjects(){
+    for (var item of this.verbList){
+      this.roleListIndex=this.roleListIndex+1
+      this.keyListIndex=-1
+      this.dictionaryObject={}
+      for (var val of this.roles){
+        this.keyListIndex = this.keyListIndex +1
+        this.tempkeyList=this.keyList[this.keyListIndex]
+        this.tempdictionaryObject = this.dictionaryObject[val[this.roleListIndex]]
+        // console.log(this.tempdictionaryObject)
+        if(this.tempdictionaryObject!=null){
+          this.dictionaryObject[val[this.roleListIndex]]=this.tempdictionaryObject+" "+this.tempkeyList
+        }else{
+          this.dictionaryObject[val[this.roleListIndex]]=this.tempkeyList
+        }
 
+      }
+      this.dictionaryObjects.push(this.dictionaryObject)
+
+    }
+  }
+  returnZero() {
+    return 0
+  }
 }
+
+
