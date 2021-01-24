@@ -6,7 +6,7 @@ import { ProjectorUIComponent } from './component/projector-ui/projector-ui.comp
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule} from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +21,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule.forRoot([
       {path: '', component: ProjectorUIComponent},
     ]),
-    FormsModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
