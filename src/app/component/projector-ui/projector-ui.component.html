@@ -36,49 +36,53 @@
       </div>
     </div>
 
-    <ul>
-      <li *ngFor="let verb of verbList; let num = index">
-        <label > Predicate : {{verb}} </label>
-        <br>
-        <br>
-<!--        <div>-->
-<!--          <ul class = "ulcss">-->
-<!--            <li *ngFor="let role of roles" class ="licss">-->
-<!--              {{role[num]}}-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--          <br>-->
-<!--          <ul class = "ulcss">-->
-<!--            <li *ngFor="let key of keyList" class ="licss">-->
-<!--              {{key}}-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--        </div>-->
-<!--        <br>-->
-<!--        <br>-->
-<!--      </li>-->
+    <div *ngIf="showSentence">
+      <p><b>{{sinhalaText}}</b></p>
 
-        <table>
-            <tr >
-<!--              <th *ngFor="let role of roles">{{role[num]}}</th>-->
-              <th *ngFor="let item of dictionaryObjects[num] | keyvalue:returnZero">{{item.key}}</th>
-            </tr>
-<!--            <td *ngFor="let key of keyList">{{key}}</td>-->
-              <!--              <th *ngFor="let role of roles">{{role[num]}}</th>-->
-            <tr >
-              <!--            <td *ngFor="let key of keyList">{{key}}</td>-->
-              <td *ngFor="let item of dictionaryObjects[num] | keyvalue : returnZero " >{{item.value}}</td>
-            </tr>
+      <ul>
+        <li *ngFor="let verb of verbList; let num = index">
+          <label > Frames for the Predicate : <b>{{verb}}</b> </label>
+          <br>
+          <br>
+  <!--        <div>-->
+  <!--          <ul class = "ulcss">-->
+  <!--            <li *ngFor="let role of roles" class ="licss">-->
+  <!--              {{role[num]}}-->
+  <!--            </li>-->
+  <!--          </ul>-->
+  <!--          <br>-->
+  <!--          <ul class = "ulcss">-->
+  <!--            <li *ngFor="let key of keyList" class ="licss">-->
+  <!--              {{key}}-->
+  <!--            </li>-->
+  <!--          </ul>-->
+  <!--        </div>-->
+  <!--        <br>-->
+  <!--        <br>-->
+  <!--      </li>-->
 
-        </table>
+          <table>
+              <tr >
+  <!--              <th *ngFor="let role of roles">{{role[num]}}</th>-->
+                <th *ngFor="let item of dictionaryObjects[num] | keyvalue:returnZero">{{item.key}}</th>
+              </tr>
+  <!--            <td *ngFor="let key of keyList">{{key}}</td>-->
+                <!--              <th *ngFor="let role of roles">{{role[num]}}</th>-->
+              <tr >
+                <!--            <td *ngFor="let key of keyList">{{key}}</td>-->
+                <td *ngFor="let item of dictionaryObjects[num] | keyvalue : returnZero " >{{item.value}}</td>
+              </tr>
+
+          </table>
+          <br>
+          <br>
+  <!--      <label *ngFor="let item of dictionaryObjects[num] | keyvalue"  > {{item.key}}</label>-->
+        </li>
+
         <br>
         <br>
-<!--      <label *ngFor="let item of dictionaryObjects[num] | keyvalue"  > {{item.key}}</label>-->
-      </li>
-
-      <br>
-      <br>
-    </ul>
+      </ul>
+    </div>
 
 
 </body>
