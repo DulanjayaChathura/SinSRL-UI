@@ -23,11 +23,13 @@ export class ProjectorUIComponent implements OnInit {
   keyListIndex = -1
   dictionaryObjects = []
   dictionaryObject = {}
+  dupDic={}
   tempdictionaryObject = ""
   tempkeyList = ""
   flag: any;
   visible: boolean;
-
+  sentence ; 
+  args ;
   formGroup = new FormGroup({
     english: new FormControl(),
     sinhala: new FormControl(),
@@ -57,6 +59,7 @@ export class ProjectorUIComponent implements OnInit {
     this.roleListIndex = -1;
     this.keyListIndex = -1;
     this.loading = true;
+  
 
     const submitType = this.formGroup.get('submitType').value; // whether predict or project
 
@@ -84,7 +87,8 @@ export class ProjectorUIComponent implements OnInit {
     //   this.loading = false;
     // }
     this.loading = false;
-
+    // console.log(respone);
+    
     for (var val of respone[0]) {
       this.roleList = [];
       this.word = val["text"]
@@ -96,18 +100,12 @@ export class ProjectorUIComponent implements OnInit {
 
       this.keyList.push(this.word);
       this.argList = val["frame"].replace("[", "").replace("]", "").split(", ")
-      // console.log(this.argList)
 
       for (var val of this.argList) {
-        // console.log(val)
-        //  console.log(val.search("."))
-//          console.log(val.includes("."))
         if (val.includes(".")) {
           this.roleList.push(val)
           this.verbList.push(val)
-//            console.log(val)
         } else if (val.includes("ARG")) {
-          // console.log(val.substring(2))
           this.roleList.push(val.substring(2))
         } else {
           this.roleList.push("____")
@@ -116,17 +114,20 @@ export class ProjectorUIComponent implements OnInit {
       this.roles.push(this.roleList)
       // this.labels.push(val["frame"].replace("]", "").replace("[B-", "").replace("[I-", "").replace("[O-", "").replace("[", ""));
     }
-    this.makeDictionaryProjectObjects()
+
+    this.sentence = this.keyList.join(" ")
+    this.args = this.roles.join(" ")
+    this.makeDictionaryObjects();
+   
   }
+ 
 
   /**
    * Extract data from the response in prediction task
    * @param responce
    */
   predictExtractor(responce) {
-    // if (responce != null) {
-    //   this.loading = false;
-    // }
+
     this.loading = false;
 
     for (let tokenJsonObj of responce) {
@@ -157,32 +158,7 @@ export class ProjectorUIComponent implements OnInit {
       }
       this.roles.push(this.roleList);
     }
-    this.makeDictionaryPredictObjects();
-  }
-
-  /**
-   * Make dictionary objects while projection tasks
-   */
-  makeDictionaryProjectObjects() {
-    for (var item of this.verbList) {
-      this.roleListIndex = this.roleListIndex + 1
-      this.keyListIndex = -1
-      this.dictionaryObject = {}
-      for (var val of this.roles) {
-        this.keyListIndex = this.keyListIndex + 1
-        this.tempkeyList = this.keyList[this.keyListIndex]
-        this.tempdictionaryObject = this.dictionaryObject[val[this.roleListIndex]]
-        // console.log(this.tempdictionaryObject)
-        if (this.tempdictionaryObject != null) {
-          this.dictionaryObject[val[this.roleListIndex]] = this.tempdictionaryObject + " " + this.tempkeyList
-        } else {
-          this.dictionaryObject[val[this.roleListIndex]] = this.tempkeyList
-        }
-
-      }
-      this.dictionaryObjects.push(this.dictionaryObject)
-
-    }
+    this.makeDictionaryObjects();
   }
 
   /**
@@ -190,14 +166,13 @@ export class ProjectorUIComponent implements OnInit {
    * return dictionary contains list of ranges for each predicate
    */
   findConsecutiveSimilarRoles() {
-
+    console.log(this.roles)
     const roleLstSize = this.roles.length;
     let predicateRoleRanges = {};
     for (let i = 0; i < this.roles[0].length; i++) {
       let previousIndex = 0;
       let latestIndex = 0;
       let consecutiveRanges = [];
-
       while (1) {
         if (latestIndex !== roleLstSize - 1) { // check whether the last index
           // tslint:disable-next-line:max-line-length
@@ -227,7 +202,7 @@ export class ProjectorUIComponent implements OnInit {
    * keys : sinhala text span
    * values : tag
    */
-  makeDictionaryPredictObjects() {
+  makeDictionaryObjects() {
     const similarRangesList = this.findConsecutiveSimilarRoles();
 
     for (const predicate in similarRangesList) {

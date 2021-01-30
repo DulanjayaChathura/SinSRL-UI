@@ -61,13 +61,14 @@
         <table>
             <tr >
 <!--              <th *ngFor="let role of roles">{{role[num]}}</th>-->
-              <th *ngFor="let item of dictionaryObjects[num] | keyvalue:returnZero">{{item.key}}</th>
+              <!-- <th *ngFor="let item of dictionaryObjects[num] | keyvalue:returnZero">{{item.value}}</th> -->
+              <th *ngFor="let item of dictionaryObjects[num] | keyvalue:returnZero">{{item.value}}</th>
             </tr>
 <!--            <td *ngFor="let key of keyList">{{key}}</td>-->
               <!--              <th *ngFor="let role of roles">{{role[num]}}</th>-->
             <tr >
               <!--            <td *ngFor="let key of keyList">{{key}}</td>-->
-              <td *ngFor="let item of dictionaryObjects[num] | keyvalue : returnZero " >{{item.value}}</td>
+              <td *ngFor="let item of dictionaryObjects[num] | keyvalue : returnZero " >{{item.key}}</td>
             </tr>
 
         </table>
