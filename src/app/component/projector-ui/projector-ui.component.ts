@@ -28,8 +28,9 @@ export class ProjectorUIComponent implements OnInit {
   tempkeyList = ""
   flag: any;
   visible: boolean;
-  sentence ; 
-  args ;
+  sinhalaText: string;
+  showSentence: boolean;
+
   formGroup = new FormGroup({
     english: new FormControl(),
     sinhala: new FormControl(),
@@ -40,6 +41,7 @@ export class ProjectorUIComponent implements OnInit {
   constructor(private router: Router, private projectorService: ProjectorServiceService, private predictService: PredictService) {
     this.flag = 'project';
     this.visible = true;
+    this.showSentence = false;
   }
 
   ngOnInit(): void {
@@ -48,6 +50,7 @@ export class ProjectorUIComponent implements OnInit {
   handleChange(event): void {
     var selected = event.target.value;
     this.visible = selected !== 'predict';
+    this.showSentence = false;
   }
 
   submit() {
@@ -59,18 +62,20 @@ export class ProjectorUIComponent implements OnInit {
     this.roleListIndex = -1;
     this.keyListIndex = -1;
     this.loading = true;
-  
 
+    this.sinhalaText = this.formGroup.get('sinhala').value;
     const submitType = this.formGroup.get('submitType').value; // whether predict or project
 
     if (submitType === 'project') {
       this.projectorService.request(this.formGroup.get('english').value, this.formGroup.get('sinhala').value).subscribe(response => {
+        this.showSentence = true;
         this.output = this.projectExtractor(JSON.parse("[" + response["result"] + "]"));
       }, error => {
         this.loading = false;
       });
     } else {
       this.predictService.request(this.formGroup.get('sinhala').value).subscribe(response => {
+        this.showSentence = true;
         this.output = this.predictExtractor(JSON.parse(response['result']));
       }, error => {
         this.loading = false;
@@ -114,9 +119,6 @@ export class ProjectorUIComponent implements OnInit {
       this.roles.push(this.roleList)
       // this.labels.push(val["frame"].replace("]", "").replace("[B-", "").replace("[I-", "").replace("[O-", "").replace("[", ""));
     }
-
-    this.sentence = this.keyList.join(" ")
-    this.args = this.roles.join(" ")
     this.makeDictionaryObjects();
    
   }
