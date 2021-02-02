@@ -16,7 +16,7 @@ s
     var obj = {sinSentence: sinhala, engSentence: english};
     var myJSON = JSON.stringify(obj);
     // console.log(myJSON)
-    return this.http.post(`http://104.198.44.103/project`, myJSON, {headers: new HttpHeaders()
+    return this.http.post(`http://34.68.91.218/project`, myJSON, {headers: new HttpHeaders()
         .set( 'Access-Control-Request-Origin', '*')
         .set('Access-Control-Allow-Headers' , 'Content-Type')
         .set('Content-Type','application/json')

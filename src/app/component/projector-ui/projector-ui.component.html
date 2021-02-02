@@ -1,89 +1,103 @@
 <body>
-<form class="form-signin" [formGroup]="formGroup" (ngSubmit)="submit()">
+<h1 class="h3 mb-3 font-weight-normal">සිංSRL - The First Ever Semantic Role Labeller for Sinhala</h1>
+<div class="col-50 container center">
+  <form class="form-signin" [formGroup]="formGroup" (ngSubmit)="submit()">
+    <div class="row">
+      <div class="col-25-lft">
+        <label>Sinhala sentence </label>
+      </div>
+      <div class="col-75">
+        <input matInput formControlName="sinhala" id="sinhala" class="form-control">
+      </div>
+      <br>
+      <br>
+    </div>
 
-  <h1 class="h3 mb-3 font-weight-normal">සිංSRL - The First Ever Semantic Role Labeller for Sinhala</h1>
+    <div *ngIf="visible" class="row">
+      <div class="col-25-lft">
+        <label>English sentence </label>
+      </div>
+      <div class="col-75">
+        <input matInput formControlName="english" id="english" class="form-control">
+      </div>
+      <br>
+      <br>
+    </div>
 
-  <div >
-    <label >Sinhala sentence    </label>
-    <input  matInput  formControlName="sinhala"  id="sinhala" class="form-control" >
-    <br>
-    <br>
-  </div>
-
-  <div *ngIf="visible">
-    <label >English sentence    </label>
-    <input matInput  formControlName="english"  id="english" class="form-control"  >
-    <br>
-    <br>
-  </div>
-
-  <input  matInput  type="radio" value="project" formControlName="submitType"  class="form-control" (change)="handleChange($event)"> Project
-  <br>
-  <br>
-
-  <input  matInput  type="radio" value="predict" formControlName="submitType"  class="form-control" [(ngModel)]="flag" (change)="handleChange($event)"> Predict
-  <br>
-  <br>
-
-  <button class="btn btn-lg btn-secondary btn-block" type="submit">submit</button>
-
-</form>
-    <br>
-    <br>
-    <div class="d-flex justify-content-center" *ngIf="loading">
-      <div class="spinner-border" role="status">
-        <span class="sr-only" id="loading"></span>
+    <div class="row">
+      <div class="col-25-lft">
+        <input matInput type="radio" value="project" formControlName="submitType" class="form-control"
+               (change)="handleChange($event)"> Project
+      </div>
+      <div class="col-75">
+        <input matInput type="radio" value="predict" formControlName="submitType" class="form-control"
+               [(ngModel)]="flag" (change)="handleChange($event)"> Direct Annotate
       </div>
     </div>
 
-    <div *ngIf="showSentence">
-      <p><b>{{sinhalaText}}</b></p>
-
-      <ul>
-        <li *ngFor="let verb of verbList; let num = index">
-          <label > Frames for the Predicate : <b>{{verb}}</b> </label>
-          <br>
-          <br>
-  <!--        <div>-->
-  <!--          <ul class = "ulcss">-->
-  <!--            <li *ngFor="let role of roles" class ="licss">-->
-  <!--              {{role[num]}}-->
-  <!--            </li>-->
-  <!--          </ul>-->
-  <!--          <br>-->
-  <!--          <ul class = "ulcss">-->
-  <!--            <li *ngFor="let key of keyList" class ="licss">-->
-  <!--              {{key}}-->
-  <!--            </li>-->
-  <!--          </ul>-->
-  <!--        </div>-->
-  <!--        <br>-->
-  <!--        <br>-->
-  <!--      </li>-->
-
-          <table>
-              <tr >
-  <!--              <th *ngFor="let role of roles">{{role[num]}}</th>-->
-                <th *ngFor="let item of dictionaryObjects[num] | keyvalue:returnZero">{{item.key}}</th>
-              </tr>
-  <!--            <td *ngFor="let key of keyList">{{key}}</td>-->
-                <!--              <th *ngFor="let role of roles">{{role[num]}}</th>-->
-              <tr >
-                <!--            <td *ngFor="let key of keyList">{{key}}</td>-->
-                <td *ngFor="let item of dictionaryObjects[num] | keyvalue : returnZero " >{{item.value}}</td>
-              </tr>
-
-          </table>
-          <br>
-          <br>
-  <!--      <label *ngFor="let item of dictionaryObjects[num] | keyvalue"  > {{item.key}}</label>-->
-        </li>
-
-
-        <br>
-        <br>
-      </ul>
+    <!--  <button class="btn btn-lg btn-secondary btn-block" type="submit">submit</button>-->
+    <div class="row">
+      <input type="submit" value="Submit">
     </div>
+  </form>
+</div>
+
+<div>
+  <br>
+  <br>
+  <div class="d-flex justify-content-center display" *ngIf="loading">
+    <div class="spinner-border" role="status">
+      <span class="sr-only" id="loading"></span>
+    </div>
+  </div>
+
+  <div *ngIf="showSentence">
+    <p><b>{{sinhalaText}}</b></p>
+
+    <ul>
+      <li *ngFor="let verb of verbList; let num = index">
+        <label> Frames for the Predicate : <b>{{verb}}</b> </label>
+        <br>
+        <br>
+        <!--        <div>-->
+        <!--          <ul class = "ulcss">-->
+        <!--            <li *ngFor="let role of roles" class ="licss">-->
+        <!--              {{role[num]}}-->
+        <!--            </li>-->
+        <!--          </ul>-->
+        <!--          <br>-->
+        <!--          <ul class = "ulcss">-->
+        <!--            <li *ngFor="let key of keyList" class ="licss">-->
+        <!--              {{key}}-->
+        <!--            </li>-->
+        <!--          </ul>-->
+        <!--        </div>-->
+        <!--        <br>-->
+        <!--        <br>-->
+        <!--      </li>-->
+
+        <table>
+          <tr>
+            <!--              <th *ngFor="let role of roles">{{role[num]}}</th>-->
+            <th *ngFor="let item of dictionaryObjects[num] | keyvalue:returnZero">{{item.key}}</th>
+          </tr>
+          <!--            <td *ngFor="let key of keyList">{{key}}</td>-->
+          <!--              <th *ngFor="let role of roles">{{role[num]}}</th>-->
+          <tr>
+            <!--            <td *ngFor="let key of keyList">{{key}}</td>-->
+            <td *ngFor="let item of dictionaryObjects[num] | keyvalue : returnZero ">{{item.value}}</td>
+          </tr>
+
+        </table>
+        <br>
+        <br>
+        <!--      <label *ngFor="let item of dictionaryObjects[num] | keyvalue"  > {{item.key}}</label>-->
+      </li>
 
 
+      <br>
+      <br>
+    </ul>
+  </div>
+</div>
 </body>
