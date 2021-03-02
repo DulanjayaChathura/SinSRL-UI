@@ -1,0 +1,5 @@
+<div class="topnav">
+  <a [ngClass]="{'active': step==='step1'}" (click)="step = 'step1'" class="nav-link" routerLink="/">Home </a>
+  <a [ngClass]="{'active': step==='step2'}" (click)="step = 'step2'" class="nav-link" routerLink="/about">About</a>
+  <a [ngClass]="{'active': step==='step3'}" (click)="step = 'step3'" class="nav-link" routerLink="/papers">Papers</a>
+</div>

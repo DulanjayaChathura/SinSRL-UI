@@ -5,14 +5,20 @@ import { AppComponent } from './app.component';
 import { ProjectorUIComponent } from './component/projector-ui/projector-ui.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule} from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NavBarComponent } from './component/nav-bar/nav-bar.component';
+import { AboutComponent } from './component/about/about.component';
+import { PapersComponent } from './component/papers/papers.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectorUIComponent,
+    NavBarComponent,
+    AboutComponent,
+    PapersComponent,
 
   ],
   imports: [
@@ -20,6 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     RouterModule.forRoot([
       {path: '', component: ProjectorUIComponent},
+      {path: 'about', component: AboutComponent},
+      {path: 'papers', component: PapersComponent},
     ]),
     ReactiveFormsModule,
     HttpClientModule
