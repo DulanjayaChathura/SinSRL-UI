@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { AboutComponent } from './component/about/about.component';
 import { PapersComponent } from './component/papers/papers.component';
+import { SourceComponent } from './component/source/source.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { PapersComponent } from './component/papers/papers.component';
     NavBarComponent,
     AboutComponent,
     PapersComponent,
+    SourceComponent,
+    FooterComponent,
 
   ],
   imports: [
@@ -28,6 +32,7 @@ import { PapersComponent } from './component/papers/papers.component';
       {path: '', component: ProjectorUIComponent},
       {path: 'about', component: AboutComponent},
       {path: 'papers', component: PapersComponent},
+      {path: 'source', component: SourceComponent},
     ]),
     ReactiveFormsModule,
     HttpClientModule

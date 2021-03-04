@@ -8,7 +8,7 @@
 
 <div class="col-50 container center">
   <form class="form-signin" [formGroup]="formGroup" (ngSubmit)="submit()">
-    <div class="row">
+    <div class="addMargin row">
       <div class="col-25-lft">
         <label>Sinhala sentence </label>
       </div>
@@ -19,7 +19,7 @@
       <br>
     </div>
 
-    <div *ngIf="visible" class="row">
+    <div *ngIf="visible" class="addMargin row">
       <div class="col-25-lft">
         <label>English sentence </label>
       </div>
@@ -30,14 +30,14 @@
       <br>
     </div>
 
-    <div class="row">
-      <div class="col-25-lft">
+    <div class="addMargin row">
+      <div class="col-50-l">
         <input matInput type="radio" value="project" formControlName="submitType" class="form-control"
-               (change)="handleChange($event)"> Project
+               (change)="handleChange($event)"> Annotate using Annotation Projection
       </div>
-      <div class="col-75">
+      <div class="col-50-r">
         <input matInput type="radio" value="predict" formControlName="submitType" class="form-control"
-               [(ngModel)]="flag" (change)="handleChange($event)"> Direct Annotate
+               [(ngModel)]="flag" (change)="handleChange($event)"> Annotate Directly
       </div>
     </div>
 
