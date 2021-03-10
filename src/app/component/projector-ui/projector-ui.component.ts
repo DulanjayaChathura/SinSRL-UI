@@ -93,7 +93,7 @@ export class ProjectorUIComponent implements OnInit {
     // }
     this.loading = false;
     // console.log(respone);
-    
+
     for (var val of respone[0]) {
       this.roleList = [];
       this.word = val["text"]
@@ -120,9 +120,9 @@ export class ProjectorUIComponent implements OnInit {
       // this.labels.push(val["frame"].replace("]", "").replace("[B-", "").replace("[I-", "").replace("[O-", "").replace("[", ""));
     }
     this.makeDictionaryObjects();
-   
+
   }
- 
+
 
   /**
    * Extract data from the response in prediction task
@@ -147,12 +147,12 @@ export class ProjectorUIComponent implements OnInit {
 
       for (let tag of this.argList) {
         if (tag.includes('.')) {
-          this.roleList.push(tag.substring(3, tag.length - 1));
-          if (!this.verbList.includes(tag.substring(3, tag.length - 1))) {
-            this.verbList.push(tag.substring(3, tag.length - 1));
+          this.roleList.push(tag.substring(1, tag.length - 1));
+          if (!this.verbList.includes(tag.substring(1, tag.length - 1))) {
+            this.verbList.push(tag.substring(1, tag.length - 1));
           }
         } else if (tag.includes('ARG')) {
-          this.roleList.push(tag.substring(3, tag.length - 1));
+          this.roleList.push(tag.substring(1, tag.length - 1));
         } else {
           this.roleList.push(tag.substring(1, tag.length - 1
           ));

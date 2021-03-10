@@ -1,7 +1,7 @@
 <body>
 
 <div style="padding-left:16px">
-  <img src="assets/logo.jpg" alt="Logo">
+  <img class="center-logo" src="assets/logo.jpg" alt="Logo">
 </div>
 
 <h1 class="h3 mb-3 font-weight-normal">සිංSRL - The First Ever Semantic Role Labeller for Sinhala</h1>
@@ -13,7 +13,7 @@
         <label>Sinhala sentence </label>
       </div>
       <div class="col-75">
-        <input matInput formControlName="sinhala" id="sinhala" class="form-control">
+        <input matInput formControlName="sinhala" id="sinhala" class="form-control" type="text">
       </div>
       <br>
       <br>
@@ -24,7 +24,7 @@
         <label>English sentence </label>
       </div>
       <div class="col-75">
-        <input matInput formControlName="english" id="english" class="form-control">
+        <input matInput formControlName="english" id="english" class="form-control" type="text">
       </div>
       <br>
       <br>
@@ -33,11 +33,11 @@
     <div class="addMargin row">
       <div class="col-50-l">
         <input matInput type="radio" value="project" formControlName="submitType" class="form-control"
-               (change)="handleChange($event)"> Annotate using Annotation Projection
+               (change)="handleChange($event)"> Annotation Projection
       </div>
       <div class="col-50-r">
         <input matInput type="radio" value="predict" formControlName="submitType" class="form-control"
-               [(ngModel)]="flag" (change)="handleChange($event)"> Annotate Directly
+               [(ngModel)]="flag" (change)="handleChange($event)"> Direct Annotation
       </div>
     </div>
 

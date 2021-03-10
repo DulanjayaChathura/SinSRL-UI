@@ -14,7 +14,7 @@ export class PredictService {
     var obj = {sinSentence: sinhala};
     var myJSON = JSON.stringify(obj);
 
-    return this.http.post(`http://localhost:5000/predict`, myJSON, {
+    return this.http.post(`http://nlp-tools.uom.lk/sinsrl/predict`, myJSON, {
       headers: new HttpHeaders()
         .set('Access-Control-Request-Origin', '*')
         .set('Access-Control-Allow-Headers', 'Content-Type')
